@@ -1,0 +1,1290 @@
+here<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تعلم تدكصهك | التاريخ وقواميس المستقبل</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+
+*{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+
+:root{
+ --bg-primary: #020617;
+ --bg-secondary: #090d1f;
+ --panel-bg: rgba(15, 23, 42, 0.82);
+ --card-bg: rgba(30, 41, 59, 0.65);
+ --border-color: rgba(56, 189, 248, 0.25);
+ --border-glow: rgba(56, 189, 248, 0.6);
+ --cyan: #38bdf8;
+ --indigo: #818cf8;
+ --purple: #c084fc;
+ --green: #4ade80;
+ --pink: #f43f5e;
+ --text-main: #f8fafc;
+ --text-muted: #94a3b8;
+}
+
+body{
+ margin:0;
+ font-family: 'Cairo', Tahoma, Arial, sans-serif;
+ background: radial-gradient(circle at top center, #0f172a, var(--bg-primary) 80%);
+ color: var(--text-main);
+ padding-bottom: 120px;
+ min-height: 100vh;
+ overflow-x: hidden;
+}
+
+/* شاشة التحميل المستقبلية */
+#cyber-loader {
+ position: fixed;
+ inset: 0;
+ background: var(--bg-primary);
+ z-index: 9999;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ transition: opacity 0.5s ease;
+}
+.loader-ring {
+ width: 70px;
+ height: 70px;
+ border: 3px solid rgba(56,189,248,0.1);
+ border-top: 3px solid var(--cyan);
+ border-radius: 50%;
+ animation: spin 1s linear infinite;
+ box-shadow: 0 0 20px rgba(56,189,248,0.3);
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+header{
+ text-align: center;
+ padding: 35px 20px;
+ background: linear-gradient(135deg, rgba(8, 145, 178, 0.25), rgba(79, 70, 229, 0.25));
+ backdrop-filter: blur(20px);
+ -webkit-backdrop-filter: blur(20px);
+ border-bottom: 1px solid var(--border-color);
+ border-radius: 0 0 35px 35px;
+ box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+ position: relative;
+ overflow: hidden;
+}
+
+header::before {
+ content: '';
+ position: absolute;
+ top: -50%;
+ left: -50%;
+ width: 200%;
+ height: 200%;
+ background: radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 60%);
+ pointer-events: none;
+ animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+@keyframes pulseGlow {
+ 0% { transform: scale(1); opacity: 0.8; }
+ 100% { transform: scale(1.1); opacity: 1; }
+}
+
+header h1{
+ margin: 0;
+ font-size: 28px;
+ font-weight: 900;
+ background: linear-gradient(120deg, var(--cyan), var(--indigo), var(--purple));
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ letter-spacing: 0.5px;
+ text-shadow: 0 0 30px rgba(56,189,248,0.3);
+}
+
+header p {
+ color: var(--text-muted);
+ margin: 8px 0 0;
+ font-size: 14px;
+}
+
+.container{max-width: 680px; margin: auto; padding: 16px;}
+
+.section{
+ background: var(--panel-bg);
+ backdrop-filter: blur(16px);
+ -webkit-backdrop-filter: blur(16px);
+ border: 1px solid var(--border-color);
+ border-radius: 24px;
+ padding: 22px;
+ margin: 16px 0;
+ box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+ position: relative;
+ overflow: hidden;
+}
+
+.section::after {
+ content: '';
+ position: absolute;
+ top: 0; right: 0; width: 4px; height: 100%;
+ background: linear-gradient(to bottom, var(--cyan), var(--indigo));
+ opacity: 0.7;
+}
+
+h2{color: var(--cyan); font-size: 20px; margin-top: 0; font-weight: 700; display: flex; align-items: center; gap: 8px;}
+h3{color: var(--purple); font-size: 16px; margin-top: 15px;}
+
+.card{
+ background: var(--card-bg);
+ padding: 16px;
+ border-radius: 16px;
+ margin: 12px 0;
+ border: 1px solid rgba(255, 255, 255, 0.05);
+ box-shadow: inset 0 1px 2px rgba(255,255,255,0.08);
+ transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover{
+ border-color: var(--border-glow);
+ transform: translateY(-3px);
+ box-shadow: 0 8px 25px rgba(56, 189, 248, 0.15);
+}
+
+.word{font-size: 20px; font-weight: 700; color: var(--cyan); letter-spacing: 0.3px;}
+.meaning{color: #e2e8f0; margin-top: 6px; font-size: 15px;}
+
+button{
+ border: 0;
+ border-radius: 14px;
+ padding: 12px 20px;
+ margin: 6px 4px;
+ background: linear-gradient(135deg, #0891b2, #4f46e5);
+ color: white;
+ font-family: 'Cairo', sans-serif;
+ font-size: 14px;
+ font-weight: 600;
+ cursor: pointer;
+ transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+ box-shadow: 0 4px 15px rgba(79, 70, 229, 0.35);
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ gap: 6px;
+}
+
+button:hover{
+ filter: brightness(1.2);
+ transform: translateY(-2px);
+ box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
+}
+
+button:active{transform: scale(0.95)}
+button:disabled{opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none;}
+
+input, select, textarea{
+ width: 100%;
+ padding: 14px 16px;
+ border-radius: 14px;
+ border: 1px solid rgba(148, 163, 184, 0.2);
+ background: rgba(15, 23, 42, 0.9);
+ color: white;
+ margin: 8px 0;
+ font-family: 'Cairo', sans-serif;
+ font-size: 15px;
+ transition: all 0.3s;
+ outline: none;
+}
+
+input:focus, select:focus, textarea:focus{
+ border-color: var(--cyan);
+ box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.25);
+ background: rgba(15, 23, 42, 1);
+}
+
+textarea{min-height: 110px; resize: vertical;}
+
+.page{display: none; opacity: 0; transform: translateY(12px); transition: opacity 0.35s ease, transform 0.35s ease;}
+.page.active{display: block; opacity: 1; transform: translateY(0);}
+
+/* شريط التنقل السفلي المستقبلي */
+nav{
+ position: fixed;
+ bottom: 20px;
+ left: 12px;
+ right: 12px;
+ max-width: 640px;
+ margin: auto;
+ background: rgba(10, 17, 35, 0.9);
+ border: 1px solid rgba(56, 189, 248, 0.2);
+ border-radius: 24px;
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+ padding: 8px 4px;
+ z-index: 100;
+ box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+ backdrop-filter: blur(25px);
+ -webkit-backdrop-filter: blur(25px);
+}
+
+nav button{
+ background: transparent;
+ font-size: 10px;
+ padding: 8px 4px;
+ margin: 0;
+ min-width: 0;
+ box-shadow: none;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 3px;
+ color: var(--text-muted);
+ font-weight: 600;
+ border-radius: 16px;
+ transition: all 0.3s ease;
+}
+
+nav button:hover {
+ background: rgba(255, 255, 255, 0.05);
+ transform: none;
+ box-shadow: none;
+ color: var(--text-main);
+}
+
+nav button.active-nav{
+ color: var(--cyan);
+ background: rgba(56, 189, 248, 0.15);
+ border: 1px solid rgba(56, 189, 248, 0.35);
+ box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
+.nav-icon{font-size: 18px;}
+
+.result{color: var(--green); font-weight: 600; margin-top: 8px;}
+.small{color: var(--text-muted); font-size: 13px;}
+.dev{border-color: rgba(192, 132, 252, 0.4); background: rgba(26, 15, 46, 0.8);}
+
+.progress{
+ height: 10px;
+ background: rgba(15, 23, 42, 0.9);
+ border-radius: 20px;
+ overflow: hidden;
+ margin: 14px 0;
+ border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.progress-bar{
+ height: 100%;
+ width: 0%;
+ background: linear-gradient(90deg, var(--cyan), var(--indigo));
+ transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+ border-radius: 20px;
+ box-shadow: 0 0 10px var(--cyan);
+}
+
+.delete-btn{
+ background: linear-gradient(135deg, #ef4444, #991b1b);
+ box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+ font-size: 12px;
+ padding: 8px 12px;
+}
+
+.back-btn{
+ background: linear-gradient(135deg, #475569, #334155);
+ box-shadow: 0 4px 12px rgba(71, 85, 105, 0.3);
+}
+
+#preview{width: 100%; border-radius: 14px; margin-top: 10px; border: 1px solid var(--border-color);}
+
+.home-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 10px;
+ margin-top: 15px;
+}
+@media (max-width: 480px) {
+ .home-grid { grid-template-columns: 1fr; }
+}
+.home-grid button { width: 100%; margin: 0; justify-content: flex-start; padding: 14px; font-size: 15px;}
+
+.multi-lang-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 8px;
+ margin-top: 10px;
+}
+.lang-box {
+ background: rgba(15, 23, 42, 0.6);
+ border: 1px solid rgba(56, 189, 248, 0.15);
+ padding: 10px;
+ border-radius: 10px;
+ font-size: 13px;
+}
+.lang-name { color: var(--cyan); font-weight: bold; font-size: 11px; margin-bottom: 3px;}
+
+/* إشعار رقمي */
+#cyber-toast {
+ position: fixed;
+ top: 20px;
+ left: 50%;
+ transform: translateX(-50%) translateY(-100px);
+ background: rgba(15, 23, 42, 0.95);
+ border: 1px solid var(--cyan);
+ color: white;
+ padding: 12px 24px;
+ border-radius: 14px;
+ box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+ z-index: 10000;
+ backdrop-filter: blur(10px);
+ transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+ font-weight: 600;
+ font-size: 14px;
+ display: flex;
+ align-items: center;
+ gap: 8px;
+}
+#cyber-toast.show {
+ transform: translateX(-50%) translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<!-- شاشة الإقلاع -->
+<div id="cyber-loader">
+ <div class="loader-ring"></div>
+ <p style="margin-top: 20px; color: var(--cyan); font-weight: 700; letter-spacing: 2px;">جاري تحميل تاريخ وقواميس إدكصهك...</p>
+</div>
+
+<!-- إشعار رقمي -->
+<div id="cyber-toast"><span>⚡</span><span id="toast-text">تم تنفيذ العملية بنجاح</span></div>
+
+<header>
+ <h1>📚 تعلم تدكصهك</h1>
+ <p id="cyber-subtitle">تاريخ قبيلة إدكصهك، القواميس المرتبة، والتوثيق الرسمي</p>
+</header>
+
+<div class="container">
+
+<!-- الرئيسية -->
+<div id="home" class="page active">
+ <div class="section">
+  <h2>📖 بوابة التعلم الكوني والتاريخي</h2>
+  <p>اختر القسم الذي تريد استكشافه في النظام:</p>
+  <div class="home-grid">
+   <button onclick="showPage('history')">📜 تاريخ وقبيلة إدكصهك</button>
+   <button onclick="showPage('greetings')">👋 قاموس التحيات</button>
+   <button onclick="showPage('pronouns')">👥 قاموس الضمائر</button>
+   <button onclick="showPage('verbs')">📘 قاموس الأفعال</button>
+   <button onclick="showPage('custom')">⭐ قاموس كلماتي</button>
+   <button onclick="showPage('globalTranslate')">🌐 ترجمة لجميع اللغات</button>
+  </div>
+ </div>
+
+ <div class="section">
+  <h2>📊 مركز إحصائيات النظام</h2>
+  <div class="card" style="display: flex; justify-content: space-between; align-items: center;"><span>كلمات التحيات:</span> <b id="greetingCount" style="color:var(--cyan)">0</b></div>
+  <div class="card" style="display: flex; justify-content: space-between; align-items: center;"><span>الضمائر المشفرة:</span> <b id="pronounCount" style="color:var(--cyan)">0</b></div>
+  <div class="card" style="display: flex; justify-content: space-between; align-items: center;"><span>الأفعال الديناميكية:</span> <b id="verbCount" style="color:var(--cyan)">0</b></div>
+  <div class="card" style="display: flex; justify-content: space-between; align-items: center;"><span>كلماتك المضافة:</span> <b id="customCount" style="color:var(--cyan)">0</b></div>
+ </div>
+</div>
+
+<!-- قسم تاريخ لغة وقبيلة إدكصهك وشيوخها الأعلام -->
+<div id="history" class="page">
+ <div class="section">
+  <h2>📜 تاريخ ونشأة قبيلة إدكصهك (Daoussak)</h2>
+  
+  <div class="card">
+   <h3 style="color:var(--cyan); margin-top:0;">الأصول والجذور</h3>
+   <p style="line-height:1.7; color:#cbd5e1; font-size:14px;">
+    قبيلة <b>إدكصهك</b> هي مجموعة عرقية وقبيلة تاريخية عريقة تقطن في منطقة الساحل الإفريقي، وتحديداً في شمال مالي وجنوب الجزائر ومناطق مجاورة في الصحراء الكبرى. اشتهر أبناؤها بالدور العلمي والديني، تحفيظ القرآن، التدريس، وفض المنازعات، ويتحدثون لغة ترتبط بالمنطقة والتماشيك[span_3](start_span)[span_3](end_span)[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span).
+   </p>
+  </div>
+
+  <div class="card">
+   <h3 style="color:var(--purple); margin-top:0;">👑 أعلام وشيوخ قبيلة إدكصهك الموثقون</h3>
+   <p class="small">شخصيات قيادية تقليدية وردت أسماؤها في مصادر وتقارير موثقة:</p>
+  </div>
+
+  <div class="card">
+   <h3 style="color:var(--cyan); margin-top:0;">👑 طه أغ محمد (Taha Ag Mohamed)</h3>
+   <p><b>الاسم:</b> Taha Ag Mohamed</p>
+   <p><b>الصفة:</b> شيخ إدكصهك التقليدي (Daoussak)[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span).</p>
+   <p><b>التوثيق:</b> ورد اسمه في تقرير فريق خبراء الأمم المتحدة حول مالي الصادر في 6 أغسطس 2021، سنة 2021/714[span_8](start_span)[span_8](end_span)[span_9](start_span)[span_9](end_span).</p>
+  </div>
+
+  <div class="card">
+   <h3 style="color:var(--cyan); margin-top:0;">👑 إلياس أغ أيوبا (Ilias Ag Ayoub)</h3>
+   <p><b>الاسم:</b> Ilias Ag Ayoub</p>
+   <p><b>الصفة:</b> الشيخ التقليدي لفرع إيهاناكاتان (Ihanakatan) من إدكصهك[span_10](start_span)[span_10](end_span)[span_11](start_span)[span_11](end_span).</p>
+   <p><b>التوثيق:</b> تقرير صحفي في صحيفة Maliweb بتاريخ 26 أبريل 2007[span_12](start_span)[span_12](end_span)[span_13](start_span)[span_13](end_span).</p>
+  </div>
+
+  <div class="card" style="margin-top: 15px;">
+   <p class="small">ملاحظة: هذه قائمة توثيقية لأعلام وشيوخ إدكصهك عبر التاريخ بناءً على المصادر والمراجع الرسمية المتاحة[span_14](start_span)[span_14](end_span)[span_15](start_span)[span_15](end_span)[span_16](start_span)[span_16](end_span).</p>
+  </div>
+
+  <button class="back-btn" onclick="showPage('home')" style="width:100%; margin-top:10px;">← رجوع للرئيسية</button>
+ </div>
+</div>
+
+<!-- قاموس التحيات -->
+<div id="greetings" class="page">
+ <div class="section">
+  <h2>👋 قاموس التحيات</h2>
+  <input type="text" placeholder="بحث سريع في القاموس..." oninput="filterDictionary('greetings', 'greetingList', this.value)">
+  <div id="greetingList" style="margin-top:15px;"></div>
+  <button class="back-btn" onclick="showPage('home')" style="margin-top:15px;">← رجوع للرئيسية</button>
+ </div>
+</div>
+
+<!-- قاموس الضمائر -->
+<div id="pronouns" class="page">
+ <div class="section">
+  <h2>👥 قاموس الضمائر</h2>
+  <input type="text" placeholder="بحث سريع في القاموس..." oninput="filterDictionary('pronouns', 'pronounList', this.value)">
+  <div id="pronounList" style="margin-top:15px;"></div>
+  <button class="back-btn" onclick="showPage('home')" style="margin-top:15px;">← رجوع للرئيسية</button>
+ </div>
+</div>
+
+<!-- قاموس الأفعال -->
+<div id="verbs" class="page">
+ <div class="section">
+  <h2>📘 قاموس الأفعال</h2>
+  <input type="text" placeholder="بحث سريع في القاموس..." oninput="filterDictionary('verbs', 'verbList', this.value)">
+  <div id="verbList" style="margin-top:15px;"></div>
+  <button class="back-btn" onclick="showPage('home')" style="margin-top:15px;">← رجوع للرئيسية</button>
+ </div>
+</div>
+
+<!-- الكلمات الجديدة -->
+<div id="custom" class="page">
+ <div class="section">
+  <h2>⭐ قاموس كلماتي</h2>
+  <input type="text" placeholder="بحث سريع في القاموس..." oninput="filterDictionary('custom', 'customList', this.value)">
+  <div id="customList" style="margin-top:15px;"></div>
+  <button class="back-btn" onclick="showPage('home')" style="margin-top: 15px;">← رجوع للرئيسية</button>
+ </div>
+</div>
+
+<!-- شاشة ترجمة تدكصهك إلى جميع اللغات -->
+<div id="globalTranslate" class="page">
+ <div class="section">
+  <h2>🌐 ترجمة تدكصهك إلى جميع اللغات</h2>
+  <p class="small">اكتب الكلمة أو المعنى لتوليد ترجمتها الفورية لجميع اللغات العالمية دفعة واحدة.</p>
+  
+  <input type="text" id="omniInput" placeholder="اكتب المعنى أو الكلمة (مثلاً: كيف حالك أو أنا)...">
+  <button onclick="translateToAllLanguages()" style="width:100%;">🚀 توليد الترجمات الشاملة</button>
+
+  <div id="omniResults" style="margin-top: 15px;"></div>
+  <button class="back-btn" onclick="showPage('home')" style="margin-top: 15px;">← رجوع للرئيسية</button>
+ </div>
+</div>
+
+<!-- دخول المطور -->
+<div id="developerLogin" class="page">
+ <div class="section dev">
+  <h2>🔐 وحدة تحكم المطور</h2>
+  <p>أدخل مفتاح الأمان للوصول إلى النواة:</p>
+  <input type="password" id="developerPassword" placeholder="كلمة المرور">
+  <button onclick="loginDeveloper()">فك الحماية ودخول</button>
+  <p id="loginMessage" class="result" style="color:var(--pink);"></p>
+ </div>
+</div>
+
+<!-- لوحة المطور -->
+<div id="developer" class="page">
+ <div class="section dev">
+  <h2>🛠️ لوحة سيطرة المطور</h2>
+  <p>إدارة وقواعد بيانات النظام.</p>
+
+  <h3>حقن كلمة جديدة</h3>
+  <input id="newWord" placeholder="الكلمة بلغة تدكصهك">
+  <input id="newMeaning" placeholder="المعنى بالعربية">
+
+  <select id="category">
+   <option value="greetings">قاموس التحيات</option>
+   <option value="pronouns">قاموس الضمائر</option>
+   <option value="verbs">قاموس الأفعال</option>
+   <option value="custom">قاموس الكلمات الأخرى</option>
+  </select>
+
+  <button onclick="addWord()">💾 حقن وحفظ الكلمة</button>
+  <p id="message" class="result"></p>
+
+  <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin:20px 0;">
+  
+  <h3>إدارة وحذف الكلمات</h3>
+  <select id="manageCategory" onchange="renderManageList()">
+   <option value="greetings">التحيات</option>
+   <option value="pronouns">الضمائر</option>
+   <option value="verbs">الأفعال</option>
+   <option value="custom">كلماتي</option>
+  </select>
+  <div id="manageList" style="max-height: 250px; overflow-y: auto; margin-top: 10px;"></div>
+
+  <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+   <button onclick="exportWords()">📥 تصدير البيانات (JSON)</button>
+   <button class="delete-btn" onclick="resetSystemData()">⚠️ استعادة الافتراضي</button>
+   <button class="back-btn" onclick="logoutDeveloper()">🔒 إغلاق النواة</button>
+  </div>
+ </div>
+</div>
+
+<!-- الترجمة العادية -->
+<div id="translate" class="page">
+ <div class="section">
+  <h2>🌍 المترجم العصبي الفوري</h2>
+  <textarea id="sourceText" placeholder="اكتب النص للترجمة عبر الأقمار الصناعية..."></textarea>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+   <div>
+    <label class="small">من اللغة:</label>
+    <select id="fromLang">
+     <option value="ar">العربية</option>
+     <option value="en">الإنجليزية</option>
+     <option value="fr">الفرنسية</option>
+     <option value="es">الإسبانية</option>
+     <option value="de">الألمانية</option>
+     <option value="it">الإيطالية</option>
+     <option value="tr">التركية</option>
+     <option value="ru">الروسية</option>
+     <option value="zh">الصينية</option>
+     <option value="ja">اليابانية</option>
+    </select>
+   </div>
+   <div>
+    <label class="small">إلى اللغة:</label>
+    <select id="toLang">
+     <option value="en" selected>الإنجليزية</option>
+     <option value="ar">العربية</option>
+     <option value="fr">الفرنسية</option>
+     <option value="es">الإسبانية</option>
+     <option value="de">الألمانية</option>
+     <option value="tr">التركية</option>
+     <option value="ru">الروسية</option>
+    </select>
+   </div>
+  </div>
+
+  <button id="translateBtn" onclick="translateText()" style="width: 100%; margin-top: 10px;">🌐 ابدأ الترجمة العصبية</button>
+  
+  <div class="card" style="margin-top: 15px;">
+   <div class="small" style="margin-bottom: 5px; color: var(--cyan);">مخرج الترجمة:</div>
+   <div id="translationResult" style="min-height: 40px; font-size: 16px;">انتظار الإدخال...</div>
+  </div>
+
+  <div style="display: flex; gap: 8px;">
+   <button onclick="speak(document.getElementById('translationResult').innerText,toLang.value)">🔊 نطق صوتي</button>
+   <button class="back-btn" onclick="copyText('translationResult')">📋 نسخ الحافظة</button>
+  </div>
+ </div>
+</div>
+
+<!-- الصور -->
+<div id="image" class="page">
+ <div class="section">
+  <h2>📷 الماسح الضوئي البصري (OCR)</h2>
+  <input type="file" id="imageInput" accept="image/*" onchange="previewImage()">
+  <img id="preview" style="display:none">
+  <button id="ocrBtn" onclick="readImage()" style="width: 100%; margin-top: 10px;">بدء المسح الضوئي للنص</button>
+  <div class="progress"><div id="ocrProgress" class="progress-bar"></div></div>
+  <p id="ocrStatus" class="small"></p>
+  <textarea id="imageText" placeholder="النص المفكك سيظهر هنا..."></textarea>
+  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+   <button onclick="translateImageText()">ترجمة النص المفكك</button>
+   <button class="back-btn" onclick="copyText('imageText')">📋 نسخ النص</button>
+  </div>
+  <div class="card" id="imageTranslation" style="margin-top: 10px;"></div>
+ </div>
+</div>
+
+<!-- الاختبار -->
+<div id="quiz" class="page">
+ <div class="section">
+  <h2>🧠 اختبار القدرات العصبية</h2>
+  <p id="quizProgress" class="small" style="margin-bottom: 5px;"></p>
+  <div class="card" style="background: rgba(15, 23, 42, 0.6); text-align: center; padding: 20px;">
+   <p id="question" style="font-size: 18px; font-weight: 700; color: var(--cyan); margin: 0;"></p>
+  </div>
+  
+  <div id="answers" style="display: flex; flex-direction: column; gap: 8px; margin: 15px 0;"></div>
+  
+  <p id="quizResult" class="result" style="text-align: center;"></p>
+  
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; background: rgba(0,0,0,0.2); padding: 10px 15px; border-radius: 14px;">
+   <span>مستوى الكفاءة: <b id="score" style="color: var(--green);">0</b></span>
+   <div>
+    <button id="nextQuestionBtn" onclick="nextQuestion()">السؤال التالي ←</button>
+    <button class="delete-btn" onclick="restartQuiz()">إعادة المعايرة</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+</div>
+
+<!-- شريط التنقل المستقبلي -->
+<nav>
+ <button class="active-nav" data-page="home" onclick="showPage('home')">
+  <span class="nav-icon">🏠</span>الرئيسية
+ </button>
+ <button data-page="history" onclick="showPage('history')">
+  <span class="nav-icon">📜</span>التاريخ
+ </button>
+ <button data-page="globalTranslate" onclick="showPage('globalTranslate')">
+  <span class="nav-icon">🌐</span>شامل
+ </button>
+ <button data-page="translate" onclick="showPage('translate')">
+  <span class="nav-icon">🌍</span>ترجمة
+ </button>
+ <button data-page="quiz" onclick="showPage('quiz')">
+  <span class="nav-icon">🧠</span>تقييم
+ </button>
+</nav>
+
+<script>
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+function playCyberSound(type) {
+ if (!audioCtx) return;
+ if (audioCtx.state === 'suspended') audioCtx.resume();
+ 
+ const osc = audioCtx.createOscillator();
+ const gain = audioCtx.createGain();
+ osc.connect(gain);
+ gain.connect(audioCtx.destination);
+ 
+ const now = audioCtx.currentTime;
+ 
+ if (type === 'click') {
+  osc.type = 'sine';
+  osc.frequency.setValueAtTime(800, now);
+  osc.frequency.exponentialRampToValueAtTime(1200, now + 0.08);
+  gain.gain.setValueAtTime(0.05, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+  osc.start(now);
+  osc.stop(now + 0.08);
+ } else if (type === 'success') {
+  osc.type = 'triangle';
+  osc.frequency.setValueAtTime(440, now);
+  osc.frequency.setValueAtTime(880, now + 0.1);
+  gain.gain.setValueAtTime(0.08, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+  osc.start(now);
+  osc.stop(now + 0.3);
+ } else if (type === 'error') {
+  osc.type = 'sawtooth';
+  osc.frequency.setValueAtTime(200, now);
+  osc.frequency.setValueAtTime(120, now + 0.15);
+  gain.gain.setValueAtTime(0.08, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+  osc.start(now);
+  osc.stop(now + 0.25);
+ }
+}
+
+function showToast(text) {
+ const toast = document.getElementById("cyber-toast");
+ document.getElementById("toast-text").textContent = text;
+ toast.classList.add("show");
+ setTimeout(() => toast.classList.remove("show"), 3000);
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+ setTimeout(() => {
+  const loader = document.getElementById("cyber-loader");
+  loader.style.opacity = "0";
+  setTimeout(() => loader.style.display = "none", 500);
+ }, 600);
+
+ typeWriterEffect("cyber-subtitle", "تاريخ قبيلة إدكصهك، القواميس، والتوثيق الرسمي v5.0");
+});
+
+function typeWriterEffect(elementId, text, speed = 40) {
+ const el = document.getElementById(elementId);
+ el.textContent = "";
+ let i = 0;
+ function typing() {
+  if (i < text.length) {
+   el.textContent += text.charAt(i);
+   i++;
+   setTimeout(typing, speed);
+  }
+ }
+ typing();
+}
+
+const DEVELOPER_PASSWORD="246810";
+let developerLoggedIn=false;
+
+const defaultDictionaries = {
+ greetings:[
+  {word:"شينا ننشي",meaning:"كيف حالك؟"},
+  {word:"مانا ننسلان",meaning:"ما أخبارك؟"}
+ ],
+ pronouns:[
+  {word:"أغاي",meaning:"أنا"},
+  {word:"نين",meaning:"أنت أو أنتِ"},
+  {word:"اندي",meaning:"أنتم أو أنتن"},
+  {word:"أري",meaning:"نحن"},
+  {word:"إِنْڨِي",meaning:"هم أو هن"}
+ ],
+ verbs:[
+  {word:"أغاي اغبلمد",meaning:"أنا أتعلم"},
+  {word:"نين نبلمد",meaning:"أنتَ / أنتِ تتعلم"},
+  {word:"اندي اندبلمد",meaning:"أنتم تتعلمون / أنتن تتعلمن"}
+ ],
+ custom:[]
+};
+
+let dictionaries = JSON.parse(JSON.stringify(defaultDictionaries));
+
+function loadSaved(){
+ try{
+  const saved=JSON.parse(localStorage.getItem("tadkoshHistoryDictionariesV5")||"null");
+  if(saved){
+   Object.keys(defaultDictionaries).forEach(key=>{
+    if(Array.isArray(saved[key]))dictionaries[key]=saved[key];
+   });
+  }
+ }catch(e){
+  console.error("خطأ في قراءة الذاكرة",e);
+ }
+}
+
+function saveDictionaries(){
+ try{
+  localStorage.setItem("tadkoshHistoryDictionariesV5",JSON.stringify(dictionaries));
+  return true;
+ }catch(e){
+  showToast("خطأ: امتلاء مساحة الذاكرة!");
+  return false;
+ }
+}
+
+function showPage(id){
+ playCyberSound('click');
+ if(id==="developer"&&!developerLoggedIn){
+  id="developerLogin";
+ }
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+
+ document.querySelectorAll("nav button").forEach(btn=>{
+  btn.classList.toggle("active-nav",btn.dataset.page===id);
+ });
+
+ if(id==="developer")renderManageList();
+ window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+const globalLanguages = [
+ {code: "en", name: "الإنجليزية (English)"},
+ {code: "fr", name: "الفرنسية (Français)"},
+ {code: "es", name: "الإسبانية (Español)"},
+ {code: "de", name: "الألمانية (Deutsch)"},
+ {code: "it", name: "الإيطالية (Italiano)"},
+ {code: "pt", name: "البرتغالية (Português)"},
+ {code: "tr", name: "التركية (Türkçe)"},
+ {code: "ru", name: "الروسية (Русский)"},
+ {code: "zh", name: "الصينية (中文)"},
+ {code: "ja", name: "اليابانية (日本語)"},
+ {code: "ko", name: "الكورية (한국어)"},
+ {code: "hi", name: "الهندية (हिन्दी)"},
+ {code: "ur", name: "الأردية (اردو)"},
+ {code: "id", name: "الإندونيسية (Bahasa Indonesia)"}
+];
+
+async function translateToAllLanguages() {
+ const text = document.getElementById("omniInput").value.trim();
+ const resultBox = document.getElementById("omniResults");
+
+ if (!text) {
+  playCyberSound('error');
+  showToast("الرجاء إدخال كلمة أو نص للترجمة الشاملة");
+  return;
+ }
+
+ resultBox.innerHTML = `<div class="card" style="text-align:center;">⏳ جاري إرسال الطلب لجميع خوارزميات اللغات العالمية...</div>`;
+ playCyberSound('click');
+
+ let gridHTML = `<div class="multi-lang-grid">`;
+ 
+ for (let lang of globalLanguages) {
+  try {
+   const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=ar|${lang.code}`;
+   const response = await fetch(url);
+   const data = await response.json();
+   const translatedText = data.responseData?.translatedText || "---";
+
+   gridHTML += `
+    <div class="lang-box">
+     <div class="lang-name">${lang.name}</div>
+     <div style="color:var(--text-main);">${translatedText}</div>
+    </div>
+   `;
+  } catch (err) {
+   gridHTML += `
+    <div class="lang-box">
+     <div class="lang-name">${lang.name}</div>
+     <div style="color:var(--pink);">خطأ في الاتصال</div>
+    </div>
+   `;
+  }
+ }
+ gridHTML += `</div>`;
+ resultBox.innerHTML = gridHTML;
+ playCyberSound('success');
+ showToast("تم توليد الترجمات لجميع اللغات بنجاح ✓");
+}
+
+function openDeveloper(){
+ playCyberSound('click');
+ document.getElementById("developerPassword").value="";
+ document.getElementById("loginMessage").textContent="";
+ showPage("developerLogin");
+}
+
+function loginDeveloper(){
+ const password=document.getElementById("developerPassword").value;
+ if(password===DEVELOPER_PASSWORD){
+  developerLoggedIn=true;
+  playCyberSound('success');
+  showToast("تم فتح نواة المطور بنجاح ✓");
+  showPage("developer");
+ }else{
+  playCyberSound('error');
+  document.getElementById("loginMessage").textContent="مفتاح الأمان غير صالح!";
+ }
+}
+
+function logoutDeveloper(){
+ playCyberSound('click');
+ developerLoggedIn=false;
+ showPage("home");
+ showToast("تم تأمين النواة وإغلاق اللوحة");
+}
+
+function speak(text,lang="ar"){
+ if(!("speechSynthesis" in window)){
+  showToast("النطق غير مدعوم في متصفحك");
+  return;
+ }
+ playCyberSound('click');
+ speechSynthesis.cancel();
+ const utterance=new SpeechSynthesisUtterance(text);
+ utterance.lang=lang;
+ utterance.rate=.85;
+ speechSynthesis.speak(utterance);
+}
+
+function renderDictionary(key,id, filterText = ""){
+ const container=document.getElementById(id);
+ container.innerHTML="";
+
+ const list = dictionaries[key].filter(item => 
+  item.word.toLowerCase().includes(filterText.toLowerCase()) || 
+  item.meaning.toLowerCase().includes(filterText.toLowerCase())
+ );
+
+ list.forEach(item=>{
+  const card=document.createElement("div");
+  card.className="card";
+
+  const contentDiv=document.createElement("div");
+  const word=document.createElement("div");
+  word.className="word";
+  word.textContent=item.word;
+
+  const meaning=document.createElement("div");
+  meaning.className="meaning";
+  meaning.textContent=item.meaning;
+  contentDiv.append(word, meaning);
+
+  const btnContainer = document.createElement("div");
+  btnContainer.style.display = "flex";
+  btnContainer.style.gap = "6px";
+  btnContainer.style.marginTop = "10px";
+
+  const btn=document.createElement("button");
+  btn.innerHTML="🔊 استمع";
+  btn.onclick=()=>speak(item.word);
+
+  const translateOmniBtn=document.createElement("button");
+  translateOmniBtn.innerHTML="🌐 ترجم لجميع اللغات";
+  translateOmniBtn.className="back-btn";
+  translateOmniBtn.onclick=() => {
+   document.getElementById("omniInput").value = item.meaning;
+   showPage("globalTranslate");
+   translateToAllLanguages();
+  };
+
+  btnContainer.append(btn, translateOmniBtn);
+  card.append(contentDiv, btnContainer);
+  container.appendChild(card);
+ });
+
+ if(!list.length){
+  container.innerHTML=`<div class="card" style="text-align:center; color:var(--text-muted);">لا توجد تطابقات في الذاكرة.</div>`;
+ }
+}
+
+function filterDictionary(key, listId, query) {
+ renderDictionary(key, listId, query);
+}
+
+function updateStats(){
+ document.getElementById("greetingCount").textContent=dictionaries.greetings.length;
+ document.getElementById("pronounCount").textContent=dictionaries.pronouns.length;
+ document.getElementById("verbCount").textContent=dictionaries.verbs.length;
+ document.getElementById("customCount").textContent=dictionaries.custom.length;
+}
+
+function renderAll(){
+ renderDictionary("greetings","greetingList");
+ renderDictionary("pronouns","pronounList");
+ renderDictionary("verbs","verbList");
+ renderDictionary("custom","customList");
+ updateStats();
+}
+
+function addWord(){
+ if(!developerLoggedIn) return;
+
+ const word=document.getElementById("newWord").value.trim();
+ const meaning=document.getElementById("newMeaning").value.trim();
+ const category=document.getElementById("category").value;
+
+ if(!word||!meaning){
+  playCyberSound('error');
+  showToast("الرجاء إدخال الحقول المطلوبة");
+  return;
+ }
+
+ const exists=dictionaries[category].some(item=>item.word===word);
+ if(exists){
+  playCyberSound('error');
+  showToast("الكلمة موجودة مسبقاً في الذاكرة!");
+  return;
+ }
+
+ dictionaries[category].push({word,meaning});
+
+ if(!saveDictionaries()){
+  dictionaries[category].pop();
+  return;
+ }
+
+ playCyberSound('success');
+ showToast("تم حقن وحفظ الكلمة بنجاح ✓");
+ renderAll();
+ renderManageList();
+
+ document.getElementById("newWord").value="";
+ document.getElementById("newMeaning").value="";
+}
+
+function renderManageList(){
+ if(!developerLoggedIn)return;
+
+ const category=document.getElementById("manageCategory").value;
+ const box=document.getElementById("manageList");
+ box.innerHTML="";
+
+ dictionaries[category].forEach((item,index)=>{
+  const card=document.createElement("div");
+  card.className="card";
+  card.style.display="flex";
+  card.style.justifyContent="space-between";
+  card.style.alignItems="center";
+  card.style.padding="10px 14px";
+  card.style.margin="6px 0";
+
+  const title=document.createElement("div");
+  title.innerHTML=`<b>${item.word}</b> <span style="color:var(--text-muted); font-size:13px;">(${item.meaning})</span>`;
+
+  const del=document.createElement("button");
+  del.className="delete-btn";
+  del.textContent="حذف";
+  del.onclick=()=>deleteWord(category,index);
+
+  card.append(title,del);
+  box.appendChild(card);
+ });
+
+ if(!dictionaries[category].length){
+  box.innerHTML=`<div class="small" style="text-align:center; padding:10px;">لا توجد كلمات في هذا القسم.</div>`;
+ }
+}
+
+function deleteWord(category,index){
+ if(!developerLoggedIn)return;
+ if(!confirm("هل أنت متأكد من حذف هذه الكلمة نهائياً؟"))return;
+
+ const removed=dictionaries[category].splice(index,1)[0];
+ if(!saveDictionaries()){
+  dictionaries[category].splice(index,0,removed);
+  return;
+ }
+ playCyberSound('click');
+ showToast("تم مسح الكلمة من الذاكرة");
+ renderAll();
+ renderManageList();
+}
+
+function exportWords(){
+ if(!developerLoggedIn)return;
+ const blob=new Blob([JSON.stringify(dictionaries,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download="tadkosh-history-v5.json";
+ a.click();
+ URL.revokeObjectURL(url);
+ playCyberSound('success');
+ showToast("تم تنزيل النسخة الاحتياطية ✓");
+}
+
+function resetSystemData() {
+ if(!developerLoggedIn) return;
+ if(!confirm("تحذير: سيتم مسح التعديلات واستعادة القواميس الأصلية؟")) return;
+ dictionaries = JSON.parse(JSON.stringify(defaultDictionaries));
+ saveDictionaries();
+ renderAll();
+ renderManageList();
+ playCyberSound('success');
+ showToast("تمت استعادة إعدادات المصنع الافتراضية");
+}
+
+function copyText(id){
+ const el = document.getElementById(id);
+ const text = el.value || el.innerText;
+ if(navigator.clipboard&&navigator.clipboard.writeText){
+  navigator.clipboard.writeText(text).then(()=>{
+   playCyberSound('click');
+   showToast("تم النسخ إلى الذاكرة المؤقتة ✓");
+  });
+ }else{
+  showToast("تعذر النسخ");
+ }
+}
+
+async function translateText(){
+ const text=document.getElementById("sourceText").value.trim();
+ const from=document.getElementById("fromLang").value;
+ const to=document.getElementById("toLang").value;
+ const out=document.getElementById("translationResult");
+ const btn=document.getElementById("translateBtn");
+
+ if(!text){
+  playCyberSound('error');
+  showToast("الرجاء كتابة نص للترجمة أولاً");
+  return;
+ }
+ if(from===to){out.textContent=text;return}
+
+ btn.disabled=true;
+ out.textContent="⏳ جاري تحليل وإرسال الترجمة عبر الشبكة العصبية...";
+
+ try{
+  const url="https://api.mymemory.translated.net/get?q="+encodeURIComponent(text)+"&langpair="+from+"|"+to;
+  const response=await fetch(url);
+  if(!response.ok)throw new Error("Network error");
+  const data=await response.json();
+  out.textContent=data.responseData?.translatedText||"فشلت الترجمة";
+  playCyberSound('success');
+ }catch(e){
+  playCyberSound('error');
+  out.textContent="فشل الاتصال بالخادم العصبي. تحقق من الشبكة.";
+ }finally{
+  btn.disabled=false;
+ }
+}
+
+function previewImage(){
+ const file=document.getElementById("imageInput").files[0];
+ if(!file)return;
+ if(!file.type.startsWith("image/")){
+  showToast("يرجى اختيار ملف صورة صالح");
+  return;
+ }
+ const img=document.getElementById("preview");
+ img.src=URL.createObjectURL(file);
+ img.style.display="block";
+ document.getElementById("imageText").value="";
+ document.getElementById("ocrProgress").style.width="0%";
+ document.getElementById("ocrStatus").textContent="الصورة جاهزة للتحليل البصري";
+ playCyberSound('click');
+}
+
+async function readImage(){
+ const file=document.getElementById("imageInput").files[0];
+ const out=document.getElementById("imageText");
+ const status=document.getElementById("ocrStatus");
+ const progress=document.getElementById("ocrProgress");
+ const btn=document.getElementById("ocrBtn");
+
+ if(!file){
+  playCyberSound('error');
+  showToast("الرجاء اختيار صورة أولاً");
+  return;
+ }
+
+ btn.disabled=true;
+ out.value="جاري تحميل محرك التعرّف البصري (OCR)...";
+ progress.style.width="0%";
+
+ try{
+  if(!window.Tesseract){
+   await new Promise((resolve,reject)=>{
+    const script=document.createElement("script");
+    script.src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js";
+    script.onload=resolve;
+    script.onerror=reject;
+    document.head.appendChild(script);
+   });
+  }
+
+  const result=await Tesseract.recognize(file,"ara+eng",{
+   logger:m=>{
+    if(m.status==="recognizing text"){
+     const percent=Math.round(m.progress*100);
+     progress.style.width=percent+"%";
+     status.textContent=`اكتمال التحليل البصري: ${percent}%`;
+    }else{
+     status.textContent="تهيئة خوارزميات المسح...";
+    }
+   }
+  });
+
+  out.value=result.data.text||"لم يتم استخراج نص واضح";
+  status.textContent="اكتمل المسح البصري بنجاح ✓";
+  progress.style.width="100%";
+  playCyberSound('success');
+ }catch(e){
+  playCyberSound('error');
+  out.value="تعذر تحليل الصورة. تأكد من اتصال الإنترنت.";
+  status.textContent="خطأ في عملية التحليل البصري";
+ }finally{
+  btn.disabled=false;
+ }
+}
+
+async function translateImageText(){
+ const text=document.getElementById("imageText").value.trim();
+ const out=document.getElementById("imageTranslation");
+ if(!text){
+  playCyberSound('error');
+  showToast("لا يوجد نص مفكك للترجمة");
+  return;
+ }
+
+ out.textContent="جاري الترجمة العصبية...";
+ try{
+  const url="https://api.mymemory.translated.net/get?q="+encodeURIComponent(text)+"&langpair=ar|en";
+  const response=await fetch(url);
+  const data=await response.json();
+  out.textContent="الترجمة المعززة: " + (data.responseData?.translatedText||"فشلت الترجمة");
+  playCyberSound('success');
+ }catch(e){
+  playCyberSound('error');
+  out.textContent="تعذر الاتصال بخدمة الترجمة";
+ }
+}
+
+const questions=[
+ {q:"ما معنى كلمة (أغاي) في الذاكرة؟",a:["أنا","أنت","نحن"],correct:"أنا"},
+ {q:"ما معنى كلمة (نين) في الذاكرة؟",a:["هم","أنت أو أنتِ","أنا"],correct:"أنت أو أنتِ"},
+ {q:"ما معنى كلمة (أري) في الذاكرة؟",a:["نحن","أنت","هم"],correct:"نحن"},
+ {q:"ما معنى كلمة (إِنْڨِي) في الذاكرة؟",a:["أنا","هم أو هن","أنت"],correct:"هم أو هن"},
+ {q:"ما معنى كلمة (اندي) في الذاكرة؟",a:["نحن","أنتم أو أنتن","أنا"],correct:"أنتم أو أنتن"}
+];
+
+let current=0;
+let score=0;
+let answered=false;
+
+function renderQuestion(){
+ const q=questions[current];
+ document.getElementById("question").textContent=q.q;
+ document.getElementById("quizResult").textContent="";
+ document.getElementById("quizProgress").textContent=`اختبار السؤال ${current+1} من ${questions.length}`;
+ document.getElementById("nextQuestionBtn").disabled=true;
+ answered=false;
+
+ const box=document.getElementById("answers");
+ box.innerHTML="";
+
+ q.a.forEach(answer=>{
+  const btn=document.createElement("button");
+  btn.textContent=answer;
+  btn.style.width="100%";
+  btn.style.margin="4px 0";
+  btn.style.justifyContent="center";
+  btn.onclick=()=>checkAnswer(answer,btn);
+  box.appendChild(btn);
+ });
+}
+
+function checkAnswer(answer,button){
+ if(answered)return;
+ answered=true;
+
+ const correct=questions[current].correct;
+ const out=document.getElementById("quizResult");
+
+ if(answer===correct){
+  playCyberSound('success');
+  out.textContent="إجابة صحيحة متطابقة! 👏";
+  out.style.color="var(--green)";
+  score++;
+  button.style.background="linear-gradient(135deg, #16a34a, #15803d)";
+  showToast("أحسنت! تم رفع مستوى الكفاءة");
+ }else{
+  playCyberSound('error');
+  out.textContent=`إجابة غير مطابقة. الصحيحة: ${correct}`;
+  out.style.color="var(--pink)";
+  button.style.background="linear-gradient(135deg, #dc2626, #991b1b)";
+  showToast("خطأ في مطابقة الإجابة");
+ }
+
+ document.getElementById("score").textContent=score;
+
+ document.querySelectorAll("#answers button").forEach(btn=>{
+  btn.disabled=true;
+ });
+
+ document.getElementById("nextQuestionBtn").disabled=false;
+}
+
+function nextQuestion(){
+ if(!answered)return;
+ playCyberSound('click');
+ if(current<questions.length-1){
+  current++;
+  renderQuestion();
+ }else{
+  document.getElementById("question").textContent="تم اكتمال اختبار القدرات العصبية بنجاح! 🚀";
+  document.getElementById("answers").innerHTML="";
+  document.getElementById("quizResult").innerHTML=`مستوى الكفاءة النهائي: <b style="color:var(--cyan);">${score}</b> من <b style="color:var(--cyan);">${questions.length}</b>`;
+  document.getElementById("nextQuestionBtn").disabled=true;
+  playCyberSound('success');
+  showToast("تهانينا، أنهيت التقييم بنجاح!");
+ }
+}
+
+function restartQuiz(){
+ playCyberSound('click');
+ current=0;
+ score=0;
+ document.getElementById("score").textContent=0;
+ renderQuestion();
+ showToast("تمت إعادة معايرة النظام للاختبار");
+}
+
+loadSaved();
+renderAll();
+renderQuestion();
+</script>
+</body>
+</html>
