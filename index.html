@@ -4,6 +4,47 @@ here<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>تعلم تدكصهك | التاريخ وقواميس المستقبل</title>
+ /* زر الفيديو العائم */
+#videoButton {
+    position: fixed;
+    right: -35px;
+    top: 45%;
+    z-index: 999;
+    width: 85px;
+    height: 65px;
+    border: 2px solid #38bdf8;
+    border-radius: 18px;
+    background: linear-gradient(135deg,#0891b2,#4f46e5);
+    box-shadow: 0 0 20px #0891b2;
+    font-size: 23px;
+    touch-action: none;
+}
+
+/* نافذة الفيديو */
+#videoBox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,.93);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.video-panel {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 18px;
+    background: #0f172a;
+    border: 1px solid #38bdf8;
+    border-radius: 20px;
+}
+
+.video-panel video {
+    width: 100%;
+    margin: 12px 0;
+    border-radius: 12px;
+}
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
@@ -25,6 +66,50 @@ here<!DOCTYPE html>
  --text-main: #f8fafc;
  --text-muted: #94a3b8;
 }
+ <!-- زر الفيديو العائم -->
+<button id="videoButton" onclick="openVideo()">
+🎬
+</button>
+
+<!-- مكتبة فيديوهات إدكصهك -->
+<div id="videoBox">
+
+    <div class="video-panel">
+
+        <button onclick="closeVideo()">
+            ✖ إغلاق
+        </button>
+
+        <h2>🎬 مكتبة فيديوهات إدكصهك</h2>
+
+        <h3>الفيديو الأول</h3>
+        <video controls playsinline preload="metadata">
+            <source src="./Empty_1793999687716.mp4" type="video/mp4">
+        </video>
+
+        <h3>الفيديو الثاني</h3>
+        <video controls playsinline preload="metadata">
+            <source src="./1794001956596.mp4" type="video/mp4">
+        </video>
+
+    </div>
+</div>
+
+<script>
+function openVideo() {
+    document.getElementById("videoBox").style.display = "block";
+}
+
+function closeVideo() {
+    const box = document.getElementById("videoBox");
+
+    box.querySelectorAll("video").forEach(video => {
+        video.pause();
+    });
+
+    box.style.display = "none";
+}
+</script>
 
 body{
  margin:0;
@@ -1285,25 +1370,7 @@ function restartQuiz(){
 loadSaved();
 renderAll();
 renderQuestion();
-</script>
- <button id="videoButton" onclick="openVideo()">
-🎬 فيديو إدكصهك
-</button>
 
-<div id="videoBox" style="display:none;">
-    <button onclick="closeVideo()">إغلاق ✖</button>
-
-    <video controls width="100%">
-        <source src="Empty_1793999687716.mp4"
-        type="video/mp4">
-    </video>
- <video controls playsinline preload="metadata" width="100%">
-    <source src="./1794001956596.mp4" type="video/mp4">
-    متصفحك لا يستطيع تشغيل هذا الفيديو.
- </video>
-</div>
-
-<script>
 function openVideo() {
     document.getElementById("videoBox").style.display = "block";
 }
