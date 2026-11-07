@@ -1,51 +1,9 @@
-here<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>تعلم تدكصهك | التاريخ وقواميس المستقبل</title>
- /* زر الفيديو العائم */
-#videoButton {
-    position: fixed;
-    right: -35px;
-    top: 45%;
-    z-index: 999;
-    width: 85px;
-    height: 65px;
-    border: 2px solid #38bdf8;
-    border-radius: 18px;
-    background: linear-gradient(135deg,#0891b2,#4f46e5);
-    box-shadow: 0 0 20px #0891b2;
-    font-size: 23px;
-    touch-action: none;
-}
-
-/* نافذة الفيديو */
-#videoBox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    background: rgba(0,0,0,.93);
-    padding: 20px;
-    overflow-y: auto;
-}
-
-.video-panel {
-    max-width: 600px;
-    margin: 30px auto;
-    padding: 18px;
-    background: #0f172a;
-    border: 1px solid #38bdf8;
-    border-radius: 20px;
-}
-
-.video-panel video {
-    width: 100%;
-    margin: 12px 0;
-    border-radius: 12px;
-}
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
 
@@ -66,50 +24,6 @@ here<!DOCTYPE html>
  --text-main: #f8fafc;
  --text-muted: #94a3b8;
 }
- <!-- زر الفيديو العائم -->
-<button id="videoButton" onclick="openVideo()">
-🎬
-</button>
-
-<!-- مكتبة فيديوهات إدكصهك -->
-<div id="videoBox">
-
-    <div class="video-panel">
-
-        <button onclick="closeVideo()">
-            ✖ إغلاق
-        </button>
-
-        <h2>🎬 مكتبة فيديوهات إدكصهك</h2>
-
-        <h3>الفيديو الأول</h3>
-        <video controls playsinline preload="metadata">
-            <source src="./Empty_1793999687716.mp4" type="video/mp4">
-        </video>
-
-        <h3>الفيديو الثاني</h3>
-        <video controls playsinline preload="metadata">
-            <source src="./1794001956596.mp4" type="video/mp4">
-        </video>
-
-    </div>
-</div>
-
-<script>
-function openVideo() {
-    document.getElementById("videoBox").style.display = "block";
-}
-
-function closeVideo() {
-    const box = document.getElementById("videoBox");
-
-    box.querySelectorAll("video").forEach(video => {
-        video.pause();
-    });
-
-    box.style.display = "none";
-}
-</script>
 
 body{
  margin:0;
@@ -461,6 +375,7 @@ nav button.active-nav{
    <button onclick="showPage('verbs')">📘 قاموس الأفعال</button>
    <button onclick="showPage('custom')">⭐ قاموس كلماتي</button>
    <button onclick="showPage('globalTranslate')">🌐 ترجمة لجميع اللغات</button>
+   <button onclick="openDeveloper()" style="grid-column: span 2; background: linear-gradient(135deg, #7c3aed, #4f46e5);">🔐 نواة المطور</button>
   </div>
  </div>
 
@@ -481,7 +396,7 @@ nav button.active-nav{
   <div class="card">
    <h3 style="color:var(--cyan); margin-top:0;">الأصول والجذور</h3>
    <p style="line-height:1.7; color:#cbd5e1; font-size:14px;">
-    قبيلة <b>إدكصهك</b> هي مجموعة عرقية وقبيلة تاريخية عريقة تقطن في منطقة الساحل الإفريقي، وتحديداً في شمال مالي وجنوب الجزائر ومناطق مجاورة في الصحراء الكبرى. اشتهر أبناؤها بالدور العلمي والديني، تحفيظ القرآن، التدريس، وفض المنازعات، ويتحدثون لغة ترتبط بالمنطقة والتماشيك[span_3](start_span)[span_3](end_span)[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span).
+    قبيلة <b>إدكصهك</b> هي مجموعة عرقية وقبيلة تاريخية عريقة تقطن في منطقة الساحل الإفريقي، وتحديداً في شمال مالي وجنوب الجزائر ومناطق مجاورة في الصحراء الكبرى. اشتهر أبناؤها بالدور العلمي والديني، تحفيظ القرآن، التدريس، وفض المنازعات، ويتحدثون لغة ترتبط بالمنطقة والتماشيك.
    </p>
   </div>
 
@@ -493,19 +408,15 @@ nav button.active-nav{
   <div class="card">
    <h3 style="color:var(--cyan); margin-top:0;">👑 طه أغ محمد (Taha Ag Mohamed)</h3>
    <p><b>الاسم:</b> Taha Ag Mohamed</p>
-   <p><b>الصفة:</b> شيخ إدكصهك التقليدي (Daoussak)[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span).</p>
-   <p><b>التوثيق:</b> ورد اسمه في تقرير فريق خبراء الأمم المتحدة حول مالي الصادر في 6 أغسطس 2021، سنة 2021/714[span_8](start_span)[span_8](end_span)[span_9](start_span)[span_9](end_span).</p>
+   <p><b>الصفة:</b> شيخ إدكصهك التقليدي (Daoussak).</p>
+   <p><b>التوثيق:</b> ورد اسمه في تقرير فريق خبراء الأمم المتحدة حول مالي الصادر في 6 أغسطس 2021.</p>
   </div>
 
   <div class="card">
    <h3 style="color:var(--cyan); margin-top:0;">👑 إلياس أغ أيوبا (Ilias Ag Ayoub)</h3>
    <p><b>الاسم:</b> Ilias Ag Ayoub</p>
-   <p><b>الصفة:</b> الشيخ التقليدي لفرع إيهاناكاتان (Ihanakatan) من إدكصهك[span_10](start_span)[span_10](end_span)[span_11](start_span)[span_11](end_span).</p>
-   <p><b>التوثيق:</b> تقرير صحفي في صحيفة Maliweb بتاريخ 26 أبريل 2007[span_12](start_span)[span_12](end_span)[span_13](start_span)[span_13](end_span).</p>
-  </div>
-
-  <div class="card" style="margin-top: 15px;">
-   <p class="small">ملاحظة: هذه قائمة توثيقية لأعلام وشيوخ إدكصهك عبر التاريخ بناءً على المصادر والمراجع الرسمية المتاحة[span_14](start_span)[span_14](end_span)[span_15](start_span)[span_15](end_span)[span_16](start_span)[span_16](end_span).</p>
+   <p><b>الصفة:</b> الشيخ التقليدي لفرع إيهاناكاتان (Ihanakatan) من إدكصهك.</p>
+   <p><b>التوثيق:</b> تقرير صحفي في صحيفة Maliweb بتاريخ 26 أبريل 2007.</p>
   </div>
 
   <button class="back-btn" onclick="showPage('home')" style="width:100%; margin-top:10px;">← رجوع للرئيسية</button>
@@ -574,6 +485,7 @@ nav button.active-nav{
   <input type="password" id="developerPassword" placeholder="كلمة المرور">
   <button onclick="loginDeveloper()">فك الحماية ودخول</button>
   <p id="loginMessage" class="result" style="color:var(--pink);"></p>
+  <button class="back-btn" onclick="showPage('home')" style="width:100%; margin-top:10px;">← رجوع للرئيسية</button>
  </div>
 </div>
 
@@ -663,24 +575,6 @@ nav button.active-nav{
    <button onclick="speak(document.getElementById('translationResult').innerText,toLang.value)">🔊 نطق صوتي</button>
    <button class="back-btn" onclick="copyText('translationResult')">📋 نسخ الحافظة</button>
   </div>
- </div>
-</div>
-
-<!-- الصور -->
-<div id="image" class="page">
- <div class="section">
-  <h2>📷 الماسح الضوئي البصري (OCR)</h2>
-  <input type="file" id="imageInput" accept="image/*" onchange="previewImage()">
-  <img id="preview" style="display:none">
-  <button id="ocrBtn" onclick="readImage()" style="width: 100%; margin-top: 10px;">بدء المسح الضوئي للنص</button>
-  <div class="progress"><div id="ocrProgress" class="progress-bar"></div></div>
-  <p id="ocrStatus" class="small"></p>
-  <textarea id="imageText" placeholder="النص المفكك سيظهر هنا..."></textarea>
-  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-   <button onclick="translateImageText()">ترجمة النص المفكك</button>
-   <button class="back-btn" onclick="copyText('imageText')">📋 نسخ النص</button>
-  </div>
-  <div class="card" id="imageTranslation" style="margin-top: 10px;"></div>
  </div>
 </div>
 
@@ -1186,97 +1080,6 @@ async function translateText(){
  }
 }
 
-function previewImage(){
- const file=document.getElementById("imageInput").files[0];
- if(!file)return;
- if(!file.type.startsWith("image/")){
-  showToast("يرجى اختيار ملف صورة صالح");
-  return;
- }
- const img=document.getElementById("preview");
- img.src=URL.createObjectURL(file);
- img.style.display="block";
- document.getElementById("imageText").value="";
- document.getElementById("ocrProgress").style.width="0%";
- document.getElementById("ocrStatus").textContent="الصورة جاهزة للتحليل البصري";
- playCyberSound('click');
-}
-
-async function readImage(){
- const file=document.getElementById("imageInput").files[0];
- const out=document.getElementById("imageText");
- const status=document.getElementById("ocrStatus");
- const progress=document.getElementById("ocrProgress");
- const btn=document.getElementById("ocrBtn");
-
- if(!file){
-  playCyberSound('error');
-  showToast("الرجاء اختيار صورة أولاً");
-  return;
- }
-
- btn.disabled=true;
- out.value="جاري تحميل محرك التعرّف البصري (OCR)...";
- progress.style.width="0%";
-
- try{
-  if(!window.Tesseract){
-   await new Promise((resolve,reject)=>{
-    const script=document.createElement("script");
-    script.src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js";
-    script.onload=resolve;
-    script.onerror=reject;
-    document.head.appendChild(script);
-   });
-  }
-
-  const result=await Tesseract.recognize(file,"ara+eng",{
-   logger:m=>{
-    if(m.status==="recognizing text"){
-     const percent=Math.round(m.progress*100);
-     progress.style.width=percent+"%";
-     status.textContent=`اكتمال التحليل البصري: ${percent}%`;
-    }else{
-     status.textContent="تهيئة خوارزميات المسح...";
-    }
-   }
-  });
-
-  out.value=result.data.text||"لم يتم استخراج نص واضح";
-  status.textContent="اكتمل المسح البصري بنجاح ✓";
-  progress.style.width="100%";
-  playCyberSound('success');
- }catch(e){
-  playCyberSound('error');
-  out.value="تعذر تحليل الصورة. تأكد من اتصال الإنترنت.";
-  status.textContent="خطأ في عملية التحليل البصري";
- }finally{
-  btn.disabled=false;
- }
-}
-
-async function translateImageText(){
- const text=document.getElementById("imageText").value.trim();
- const out=document.getElementById("imageTranslation");
- if(!text){
-  playCyberSound('error');
-  showToast("لا يوجد نص مفكك للترجمة");
-  return;
- }
-
- out.textContent="جاري الترجمة العصبية...";
- try{
-  const url="https://api.mymemory.translated.net/get?q="+encodeURIComponent(text)+"&langpair=ar|en";
-  const response=await fetch(url);
-  const data=await response.json();
-  out.textContent="الترجمة المعززة: " + (data.responseData?.translatedText||"فشلت الترجمة");
-  playCyberSound('success');
- }catch(e){
-  playCyberSound('error');
-  out.textContent="تعذر الاتصال بخدمة الترجمة";
- }
-}
-
 const questions=[
  {q:"ما معنى كلمة (أغاي) في الذاكرة؟",a:["أنا","أنت","نحن"],correct:"أنا"},
  {q:"ما معنى كلمة (نين) في الذاكرة؟",a:["هم","أنت أو أنتِ","أنا"],correct:"أنت أو أنتِ"},
@@ -1370,14 +1173,6 @@ function restartQuiz(){
 loadSaved();
 renderAll();
 renderQuestion();
-
-function openVideo() {
-    document.getElementById("videoBox").style.display = "block";
-}
-
-function closeVideo() {
-    document.getElementById("videoBox").style.display = "none";
-}
 </script>
 </body>
 </html>
