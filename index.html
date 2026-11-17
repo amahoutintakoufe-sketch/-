@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تعلم تدكصهك | التاريخ وقواميس المستقبل</title>
+<title>تعلم تدكصهك | التاريخ وقواميس المستقبل والدردشة</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
 
@@ -35,7 +35,6 @@ body{
  overflow-x: hidden;
 }
 
-/* شاشة التحميل المستقبلية */
 #cyber-loader {
  position: fixed;
  inset: 0;
@@ -202,7 +201,6 @@ textarea{min-height: 110px; resize: vertical;}
 .page{display: none; opacity: 0; transform: translateY(12px); transition: opacity 0.35s ease, transform 0.35s ease;}
 .page.active{display: block; opacity: 1; transform: translateY(0);}
 
-/* شريط التنقل السفلي المستقبلي */
 nav{
  position: fixed;
  bottom: 20px;
@@ -242,8 +240,6 @@ nav button{
 
 nav button:hover {
  background: rgba(255, 255, 255, 0.05);
- transform: none;
- box-shadow: none;
  color: var(--text-main);
 }
 
@@ -259,38 +255,6 @@ nav button.active-nav{
 .result{color: var(--green); font-weight: 600; margin-top: 8px;}
 .small{color: var(--text-muted); font-size: 13px;}
 .dev{border-color: rgba(192, 132, 252, 0.4); background: rgba(26, 15, 46, 0.8);}
-
-.progress{
- height: 10px;
- background: rgba(15, 23, 42, 0.9);
- border-radius: 20px;
- overflow: hidden;
- margin: 14px 0;
- border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.progress-bar{
- height: 100%;
- width: 0%;
- background: linear-gradient(90deg, var(--cyan), var(--indigo));
- transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
- border-radius: 20px;
- box-shadow: 0 0 10px var(--cyan);
-}
-
-.delete-btn{
- background: linear-gradient(135deg, #ef4444, #991b1b);
- box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
- font-size: 12px;
- padding: 8px 12px;
-}
-
-.back-btn{
- background: linear-gradient(135deg, #475569, #334155);
- box-shadow: 0 4px 12px rgba(71, 85, 105, 0.3);
-}
-
-#preview{width: 100%; border-radius: 14px; margin-top: 10px; border: 1px solid var(--border-color);}
 
 .home-grid {
  display: grid;
@@ -318,7 +282,42 @@ nav button.active-nav{
 }
 .lang-name { color: var(--cyan); font-weight: bold; font-size: 11px; margin-bottom: 3px;}
 
-/* إشعار رقمي */
+/* تنسيق شات واتساب المستقبلي */
+.chat-box {
+ height: 320px;
+ overflow-y: auto;
+ background: rgba(2, 6, 23, 0.6);
+ border: 1px solid rgba(56, 189, 248, 0.2);
+ border-radius: 16px;
+ padding: 12px;
+ display: flex;
+ flex-direction: column;
+ gap: 8px;
+ margin-bottom: 12px;
+}
+.message-bubble {
+ max-width: 75%;
+ padding: 10px 14px;
+ border-radius: 14px;
+ font-size: 14px;
+ line-height: 1.5;
+ word-break: break-word;
+}
+.message-bubble.sent {
+ background: linear-gradient(135deg, #0891b2, #4f46e5);
+ color: white;
+ align-self: flex-start;
+ border-bottom-right-radius: 4px;
+}
+.message-bubble.received {
+ background: rgba(30, 41, 59, 0.9);
+ color: #f8fafc;
+ align-self: flex-end;
+ border-bottom-left-radius: 4px;
+ border: 1px solid rgba(255,255,255,0.05);
+}
+.msg-sender { font-size: 10px; color: var(--cyan); margin-bottom: 2px; font-weight: bold; }
+
 #cyber-toast {
  position: fixed;
  top: 20px;
@@ -347,18 +346,16 @@ nav button.active-nav{
 
 <body>
 
-<!-- شاشة الإقلاع -->
 <div id="cyber-loader">
  <div class="loader-ring"></div>
- <p style="margin-top: 20px; color: var(--cyan); font-weight: 700; letter-spacing: 2px;">جاري تحميل تاريخ وقواميس إدكصهك...</p>
+ <p style="margin-top: 20px; color: var(--cyan); font-weight: 700; letter-spacing: 2px;">جاري تحميل تاريخ وقواميس إدكصهك والدردشة...</p>
 </div>
 
-<!-- إشعار رقمي -->
 <div id="cyber-toast"><span>⚡</span><span id="toast-text">تم تنفيذ العملية بنجاح</span></div>
 
 <header>
  <h1>📚 تعلم تدكصهك</h1>
- <p id="cyber-subtitle">تاريخ قبيلة إدكصهك، القواميس المرتبة، والتوثيق الرسمي</p>
+ <p id="cyber-subtitle">تاريخ قبيلة إدكصهك، القواميس، ونظام الدردشة الفوري v6.0</p>
 </header>
 
 <div class="container">
@@ -375,6 +372,7 @@ nav button.active-nav{
    <button onclick="showPage('verbs')">📘 قاموس الأفعال</button>
    <button onclick="showPage('custom')">⭐ قاموس كلماتي</button>
    <button onclick="showPage('globalTranslate')">🌐 ترجمة لجميع اللغات</button>
+   <button onclick="showPage('chatLogin')" style="grid-column: span 2; background: linear-gradient(135deg, #10b981, #059669);">💬 شات واتساب (بالتواصل بالمعرف)</button>
    <button onclick="openDeveloper()" style="grid-column: span 2; background: linear-gradient(135deg, #7c3aed, #4f46e5);">🔐 نواة المطور</button>
   </div>
  </div>
@@ -388,7 +386,7 @@ nav button.active-nav{
  </div>
 </div>
 
-<!-- قسم تاريخ لغة وقبيلة إدكصهك وشيوخها الأعلام -->
+<!-- شاشة تاريخ وقبيلة إدكصهك -->
 <div id="history" class="page">
  <div class="section">
   <h2>📜 تاريخ ونشأة قبيلة إدكصهك (Daoussak)</h2>
@@ -423,7 +421,7 @@ nav button.active-nav{
  </div>
 </div>
 
-<!-- قاموس التحيات -->
+<!-- شاشات القواميس -->
 <div id="greetings" class="page">
  <div class="section">
   <h2>👋 قاموس التحيات</h2>
@@ -433,7 +431,6 @@ nav button.active-nav{
  </div>
 </div>
 
-<!-- قاموس الضمائر -->
 <div id="pronouns" class="page">
  <div class="section">
   <h2>👥 قاموس الضمائر</h2>
@@ -443,7 +440,6 @@ nav button.active-nav{
  </div>
 </div>
 
-<!-- قاموس الأفعال -->
 <div id="verbs" class="page">
  <div class="section">
   <h2>📘 قاموس الأفعال</h2>
@@ -453,7 +449,6 @@ nav button.active-nav{
  </div>
 </div>
 
-<!-- الكلمات الجديدة -->
 <div id="custom" class="page">
  <div class="section">
   <h2>⭐ قاموس كلماتي</h2>
@@ -463,7 +458,6 @@ nav button.active-nav{
  </div>
 </div>
 
-<!-- شاشة ترجمة تدكصهك إلى جميع اللغات -->
 <div id="globalTranslate" class="page">
  <div class="section">
   <h2>🌐 ترجمة تدكصهك إلى جميع اللغات</h2>
@@ -474,6 +468,50 @@ nav button.active-nav{
 
   <div id="omniResults" style="margin-top: 15px;"></div>
   <button class="back-btn" onclick="showPage('home')" style="margin-top: 15px;">← رجوع للرئيسية</button>
+ </div>
+</div>
+
+<!-- نظام الدردشة الآمن بالمعرفات (مثل واتساب) -->
+<div id="chatLogin" class="page">
+ <div class="section">
+  <h2>💬 تسجيل الدخول لشات المعرفات</h2>
+  <p class="small">أدخل معرفك الخاص (اسم المستخدم) للبدء. لا يمكن لأحد مراسلتك إلا بمعرفك الفريد.</p>
+  <input type="text" id="myUsernameInput" placeholder="اكتب اسم المستخدم الخاص بك (مثلاً: fari)...">
+  <button onclick="saveMyChatUser()" style="width:100%;">دخول غرفة التواصل 🚀</button>
+  <button class="back-btn" onclick="showPage('home')" style="width:100%; margin-top:10px;">← رجوع للرئيسية</button>
+ </div>
+</div>
+
+<div id="chatRoom" class="page">
+ <div class="section">
+  <h2>💬 غرفة الدردشة الفورية</h2>
+  <div class="card" style="display:flex; justify-content:space-between; align-items:center; padding:10px;">
+   <div>المتصل حالياً: <b id="displayMyUser" style="color:var(--cyan);">---</b></div>
+   <button class="delete-btn" onclick="logoutChat()" style="padding:6px 12px; margin:0;">تغيير المعرف</button>
+  </div>
+
+  <h3>🔍 بدء محادثة مع شخص (بالـ ID / اسم المستخدم)</h3>
+  <div style="display:flex; gap:6px;">
+   <input type="text" id="targetUsername" placeholder="معرف الشخص المراد مراسلته..." style="margin:0;">
+   <button onclick="startChatWithTarget()" style="margin:0; white-space:nowrap;">فتح شات</button>
+  </div>
+
+  <div class="card" style="margin-top:15px; background:rgba(0,0,0,0.3);">
+   <div class="small" style="margin-bottom:6px; color:var(--cyan);">المحادثة النشطة مع: <b id="activeChatTarget" style="color:var(--green);">الكل / العام</b></div>
+   <div id="chatMessages" class="chat-box">
+    <div class="message-bubble received">
+     <div class="msg-sender">النظام</div>
+     أهلاً بك في شات المعرفات المشفر. أدخل معرف صديقك في الأعلى لبدء محادثة خاصة ومباشرة!
+    </div>
+   </div>
+   
+   <div style="display:flex; gap:6px;">
+    <input type="text" id="chatMessageInput" placeholder="اكتب رسالتك..." style="margin:0;" onkeypress="if(event.key==='Enter')sendChatMessage()">
+    <button onclick="sendChatMessage()" style="margin:0;">إرسال ✈</button>
+   </div>
+  </div>
+
+  <button class="back-btn" onclick="showPage('home')" style="width:100%; margin-top:10px;">← رجوع للرئيسية</button>
  </div>
 </div>
 
@@ -489,7 +527,6 @@ nav button.active-nav{
  </div>
 </div>
 
-<!-- لوحة المطور -->
 <div id="developer" class="page">
  <div class="section dev">
   <h2>🛠️ لوحة سيطرة المطور</h2>
@@ -528,7 +565,7 @@ nav button.active-nav{
  </div>
 </div>
 
-<!-- الترجمة العادية -->
+<!-- الترجمة -->
 <div id="translate" class="page">
  <div class="section">
   <h2>🌍 المترجم العصبي الفوري</h2>
@@ -543,11 +580,7 @@ nav button.active-nav{
      <option value="fr">الفرنسية</option>
      <option value="es">الإسبانية</option>
      <option value="de">الألمانية</option>
-     <option value="it">الإيطالية</option>
      <option value="tr">التركية</option>
-     <option value="ru">الروسية</option>
-     <option value="zh">الصينية</option>
-     <option value="ja">اليابانية</option>
     </select>
    </div>
    <div>
@@ -557,9 +590,6 @@ nav button.active-nav{
      <option value="ar">العربية</option>
      <option value="fr">الفرنسية</option>
      <option value="es">الإسبانية</option>
-     <option value="de">الألمانية</option>
-     <option value="tr">التركية</option>
-     <option value="ru">الروسية</option>
     </select>
    </div>
   </div>
@@ -588,7 +618,6 @@ nav button.active-nav{
   </div>
   
   <div id="answers" style="display: flex; flex-direction: column; gap: 8px; margin: 15px 0;"></div>
-  
   <p id="quizResult" class="result" style="text-align: center;"></p>
   
   <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; background: rgba(0,0,0,0.2); padding: 10px 15px; border-radius: 14px;">
@@ -603,7 +632,7 @@ nav button.active-nav{
 
 </div>
 
-<!-- شريط التنقل المستقبلي -->
+<!-- شريط التنقل السفلي المعدل ليضم الشات -->
 <nav>
  <button class="active-nav" data-page="home" onclick="showPage('home')">
   <span class="nav-icon">🏠</span>الرئيسية
@@ -611,8 +640,8 @@ nav button.active-nav{
  <button data-page="history" onclick="showPage('history')">
   <span class="nav-icon">📜</span>التاريخ
  </button>
- <button data-page="globalTranslate" onclick="showPage('globalTranslate')">
-  <span class="nav-icon">🌐</span>شامل
+ <button data-page="chatRoom" onclick="checkChatAccess()">
+  <span class="nav-icon">💬</span>الشات
  </button>
  <button data-page="translate" onclick="showPage('translate')">
   <span class="nav-icon">🌍</span>ترجمة
@@ -622,17 +651,42 @@ nav button.active-nav{
  </button>
 </nav>
 
+<!-- مكتبة Firebase متصلة مباشرة بمشروعك tadksahak الحقيقي -->
+<script type="module">
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+ import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+ // بيانات مشروعك الحقيقي tadksahak التي نسختها من فايربيس:
+ const firebaseConfig = {
+   apiKey: "AIzaSyBFVHR9ToNTGrufy4n0ZjzuG4d1Q8sKlEM",
+   authDomain: "tadksahak.firebaseapp.com",
+   projectId: "tadksahak",
+   storageBucket: "tadksahak.firebasestorage.app",
+   messagingSenderId: "23191188211",
+   appId: "1:23191188211:web:7b79cf6c425e36ad1efd86"
+ };
+
+ const app = initializeApp(firebaseConfig);
+ const db = getFirestore(app);
+
+ window.db = db;
+ window.collection = collection;
+ window.addDoc = addDoc;
+ window.query = query;
+ window.orderBy = orderBy;
+ window.onSnapshot = onSnapshot;
+ window.serverTimestamp = serverTimestamp;
+</script>
+
 <script>
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 function playCyberSound(type) {
  if (!audioCtx) return;
  if (audioCtx.state === 'suspended') audioCtx.resume();
- 
  const osc = audioCtx.createOscillator();
  const gain = audioCtx.createGain();
  osc.connect(gain);
  gain.connect(audioCtx.destination);
- 
  const now = audioCtx.currentTime;
  
  if (type === 'click') {
@@ -675,8 +729,7 @@ window.addEventListener("DOMContentLoaded", () => {
   loader.style.opacity = "0";
   setTimeout(() => loader.style.display = "none", 500);
  }, 600);
-
- typeWriterEffect("cyber-subtitle", "تاريخ قبيلة إدكصهك، القواميس، والتوثيق الرسمي v5.0");
+ typeWriterEffect("cyber-subtitle", "تاريخ قبيلة إدكصهك، القواميس، وشات المعرفات الفوري v6.0");
 });
 
 function typeWriterEffect(elementId, text, speed = 40) {
@@ -695,6 +748,109 @@ function typeWriterEffect(elementId, text, speed = 40) {
 
 const DEVELOPER_PASSWORD="246810";
 let developerLoggedIn=false;
+
+let myChatUser = localStorage.getItem("tadkosh_chat_user") || "";
+let activeTarget = "عام";
+
+function checkChatAccess() {
+ if (!myChatUser) {
+  showPage("chatLogin");
+ } else {
+  document.getElementById("displayMyUser").textContent = myChatUser;
+  showPage("chatRoom");
+  initChatListener();
+ }
+}
+
+function saveMyChatUser() {
+ const val = document.getElementById("myUsernameInput").value.trim();
+ if (!val) {
+  playCyberSound('error');
+  showToast("الرجاء إدخال معرف صالح!");
+  return;
+ }
+ myChatUser = val;
+ localStorage.setItem("tadkosh_chat_user", myChatUser);
+ playCyberSound('success');
+ showToast("تم تسجيل المعرف بنجاح ✓");
+ checkChatAccess();
+}
+
+function logoutChat() {
+ localStorage.removeItem("tadkosh_chat_user");
+ myChatUser = "";
+ showPage("chatLogin");
+ showToast("تم تسجيل خروج المعرف");
+}
+
+function startChatWithTarget() {
+ const target = document.getElementById("targetUsername").value.trim();
+ if (!target) {
+  activeTarget = "عام";
+ } else {
+  activeTarget = target;
+ }
+ document.getElementById("activeChatTarget").textContent = activeTarget;
+ playCyberSound('click');
+ showToast("تم تحديد مستلم الرسائل: " + activeTarget);
+}
+
+async function sendChatMessage() {
+ const input = document.getElementById("chatMessageInput");
+ const text = input.value.trim();
+ if (!text) return;
+
+ if (!window.db) {
+  showToast("قاعدة بيانات Firebase لم تتصل بعد!");
+  return;
+ }
+
+ try {
+  await window.addDoc(window.collection(window.db, "messages"), {
+   sender: myChatUser,
+   target: activeTarget,
+   text: text,
+   timestamp: window.serverTimestamp()
+  });
+  input.value = "";
+  playCyberSound('click');
+ } catch(e) {
+  playCyberSound('error');
+  showToast("خطأ في إرسال الرسالة");
+ }
+}
+
+let unsubscribeChat = null;
+function initChatListener() {
+ if (!window.db) return;
+ if (unsubscribeChat) unsubscribeChat();
+
+ const q = window.query(window.collection(window.db, "messages"), window.orderBy("timestamp", "asc"));
+ unsubscribeChat = window.onSnapshot(q, (snapshot) => {
+  const box = document.getElementById("chatMessages");
+  box.innerHTML = "";
+  let count = 0;
+
+  snapshot.forEach((doc) => {
+   const data = doc.data();
+   if (data.target === "عام" || data.target === myChatUser || data.sender === myChatUser) {
+    if (activeTarget === "عام" || data.target === activeTarget || data.sender === activeTarget) {
+     count++;
+     const div = document.createElement("div");
+     const isMe = data.sender === myChatUser;
+     div.className = `message-bubble ${isMe ? 'sent' : 'received'}`;
+     div.innerHTML = `<div class="msg-sender">${data.sender} ➔ ${data.target}</div>${data.text}`;
+     box.appendChild(div);
+    }
+   }
+  });
+
+  if (count === 0) {
+   box.innerHTML = `<div class="card" style="text-align:center; color:var(--text-muted);">لا توجد رسائل سابقة مع هذا المعرف. ابدأ المحادثة الآن!</div>`;
+  }
+  box.scrollTop = box.scrollHeight;
+ });
+}
 
 const defaultDictionaries = {
  greetings:[
@@ -720,29 +876,31 @@ let dictionaries = JSON.parse(JSON.stringify(defaultDictionaries));
 
 function loadSaved(){
  try{
-  const saved=JSON.parse(localStorage.getItem("tadkoshHistoryDictionariesV5")||"null");
+  const saved=JSON.parse(localStorage.getItem("tadkoshHistoryDictionariesV6")||"null");
   if(saved){
    Object.keys(defaultDictionaries).forEach(key=>{
     if(Array.isArray(saved[key]))dictionaries[key]=saved[key];
    });
   }
- }catch(e){
-  console.error("خطأ في قراءة الذاكرة",e);
- }
+ }catch(e){}
 }
 
 function saveDictionaries(){
  try{
-  localStorage.setItem("tadkoshHistoryDictionariesV5",JSON.stringify(dictionaries));
+  localStorage.setItem("tadkoshHistoryDictionariesV6",JSON.stringify(dictionaries));
   return true;
  }catch(e){
-  showToast("خطأ: امتلاء مساحة الذاكرة!");
+  showToast("خطأ: امتلاء الذاكرة!");
   return false;
  }
 }
 
 function showPage(id){
  playCyberSound('click');
+ if(id==="chatRoom") {
+  checkChatAccess();
+  return;
+ }
  if(id==="developer"&&!developerLoggedIn){
   id="developerLogin";
  }
@@ -762,59 +920,36 @@ const globalLanguages = [
  {code: "fr", name: "الفرنسية (Français)"},
  {code: "es", name: "الإسبانية (Español)"},
  {code: "de", name: "الألمانية (Deutsch)"},
- {code: "it", name: "الإيطالية (Italiano)"},
- {code: "pt", name: "البرتغالية (Português)"},
- {code: "tr", name: "التركية (Türkçe)"},
- {code: "ru", name: "الروسية (Русский)"},
- {code: "zh", name: "الصينية (中文)"},
- {code: "ja", name: "اليابانية (日本語)"},
- {code: "ko", name: "الكورية (한국어)"},
- {code: "hi", name: "الهندية (हिन्दी)"},
- {code: "ur", name: "الأردية (اردو)"},
- {code: "id", name: "الإندونيسية (Bahasa Indonesia)"}
+ {code: "tr", name: "التركية (Türkçe)"}
 ];
 
 async function translateToAllLanguages() {
  const text = document.getElementById("omniInput").value.trim();
  const resultBox = document.getElementById("omniResults");
-
  if (!text) {
   playCyberSound('error');
-  showToast("الرجاء إدخال كلمة أو نص للترجمة الشاملة");
+  showToast("الرجاء إدخال كلمة أو نص للترجمة");
   return;
  }
-
- resultBox.innerHTML = `<div class="card" style="text-align:center;">⏳ جاري إرسال الطلب لجميع خوارزميات اللغات العالمية...</div>`;
+ resultBox.innerHTML = `<div class="card" style="text-align:center;">⏳ جاري إرسال الطلب لجميع خوارزميات اللغات...</div>`;
  playCyberSound('click');
 
  let gridHTML = `<div class="multi-lang-grid">`;
- 
  for (let lang of globalLanguages) {
   try {
    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=ar|${lang.code}`;
    const response = await fetch(url);
    const data = await response.json();
    const translatedText = data.responseData?.translatedText || "---";
-
-   gridHTML += `
-    <div class="lang-box">
-     <div class="lang-name">${lang.name}</div>
-     <div style="color:var(--text-main);">${translatedText}</div>
-    </div>
-   `;
+   gridHTML += `<div class="lang-box"><div class="lang-name">${lang.name}</div><div style="color:var(--text-main);">${translatedText}</div></div>`;
   } catch (err) {
-   gridHTML += `
-    <div class="lang-box">
-     <div class="lang-name">${lang.name}</div>
-     <div style="color:var(--pink);">خطأ في الاتصال</div>
-    </div>
-   `;
+   gridHTML += `<div class="lang-box"><div class="lang-name">${lang.name}</div><div style="color:var(--pink);">خطأ اتصال</div></div>`;
   }
  }
  gridHTML += `</div>`;
  resultBox.innerHTML = gridHTML;
  playCyberSound('success');
- showToast("تم توليد الترجمات لجميع اللغات بنجاح ✓");
+ showToast("تم توليد الترجمات بنجاح ✓");
 }
 
 function openDeveloper(){
@@ -845,10 +980,7 @@ function logoutDeveloper(){
 }
 
 function speak(text,lang="ar"){
- if(!("speechSynthesis" in window)){
-  showToast("النطق غير مدعوم في متصفحك");
-  return;
- }
+ if(!("speechSynthesis" in window)) return;
  playCyberSound('click');
  speechSynthesis.cancel();
  const utterance=new SpeechSynthesisUtterance(text);
@@ -860,7 +992,6 @@ function speak(text,lang="ar"){
 function renderDictionary(key,id, filterText = ""){
  const container=document.getElementById(id);
  container.innerHTML="";
-
  const list = dictionaries[key].filter(item => 
   item.word.toLowerCase().includes(filterText.toLowerCase()) || 
   item.meaning.toLowerCase().includes(filterText.toLowerCase())
@@ -869,12 +1000,10 @@ function renderDictionary(key,id, filterText = ""){
  list.forEach(item=>{
   const card=document.createElement("div");
   card.className="card";
-
   const contentDiv=document.createElement("div");
   const word=document.createElement("div");
   word.className="word";
   word.textContent=item.word;
-
   const meaning=document.createElement("div");
   meaning.className="meaning";
   meaning.textContent=item.meaning;
@@ -890,7 +1019,7 @@ function renderDictionary(key,id, filterText = ""){
   btn.onclick=()=>speak(item.word);
 
   const translateOmniBtn=document.createElement("button");
-  translateOmniBtn.innerHTML="🌐 ترجم لجميع اللغات";
+  translateOmniBtn.innerHTML="🌐 ترجم شامل";
   translateOmniBtn.className="back-btn";
   translateOmniBtn.onclick=() => {
    document.getElementById("omniInput").value = item.meaning;
@@ -904,7 +1033,7 @@ function renderDictionary(key,id, filterText = ""){
  });
 
  if(!list.length){
-  container.innerHTML=`<div class="card" style="text-align:center; color:var(--text-muted);">لا توجد تطابقات في الذاكرة.</div>`;
+  container.innerHTML=`<div class="card" style="text-align:center; color:var(--text-muted);">لا توجد تطابقات.</div>`;
  }
 }
 
@@ -929,7 +1058,6 @@ function renderAll(){
 
 function addWord(){
  if(!developerLoggedIn) return;
-
  const word=document.getElementById("newWord").value.trim();
  const meaning=document.getElementById("newMeaning").value.trim();
  const category=document.getElementById("category").value;
@@ -939,33 +1067,21 @@ function addWord(){
   showToast("الرجاء إدخال الحقول المطلوبة");
   return;
  }
-
- const exists=dictionaries[category].some(item=>item.word===word);
- if(exists){
-  playCyberSound('error');
-  showToast("الكلمة موجودة مسبقاً في الذاكرة!");
-  return;
- }
-
  dictionaries[category].push({word,meaning});
-
  if(!saveDictionaries()){
   dictionaries[category].pop();
   return;
  }
-
  playCyberSound('success');
- showToast("تم حقن وحفظ الكلمة بنجاح ✓");
+ showToast("تم حقن وحفظ الكلمة ✓");
  renderAll();
  renderManageList();
-
  document.getElementById("newWord").value="";
  document.getElementById("newMeaning").value="";
 }
 
 function renderManageList(){
  if(!developerLoggedIn)return;
-
  const category=document.getElementById("manageCategory").value;
  const box=document.getElementById("manageList");
  box.innerHTML="";
@@ -990,25 +1106,16 @@ function renderManageList(){
   card.append(title,del);
   box.appendChild(card);
  });
-
- if(!dictionaries[category].length){
-  box.innerHTML=`<div class="small" style="text-align:center; padding:10px;">لا توجد كلمات في هذا القسم.</div>`;
- }
 }
 
 function deleteWord(category,index){
  if(!developerLoggedIn)return;
- if(!confirm("هل أنت متأكد من حذف هذه الكلمة نهائياً؟"))return;
-
- const removed=dictionaries[category].splice(index,1)[0];
- if(!saveDictionaries()){
-  dictionaries[category].splice(index,0,removed);
-  return;
- }
- playCyberSound('click');
- showToast("تم مسح الكلمة من الذاكرة");
+ if(!confirm("هل أنت متأكد من الحذف؟"))return;
+ dictionaries[category].splice(index,1);
+ saveDictionaries();
  renderAll();
  renderManageList();
+ showToast("تم الحذف");
 }
 
 function exportWords(){
@@ -1017,35 +1124,30 @@ function exportWords(){
  const url=URL.createObjectURL(blob);
  const a=document.createElement("a");
  a.href=url;
- a.download="tadkosh-history-v5.json";
+ a.download="tadkosh-history-v6.json";
  a.click();
- URL.revokeObjectURL(url);
  playCyberSound('success');
  showToast("تم تنزيل النسخة الاحتياطية ✓");
 }
 
 function resetSystemData() {
  if(!developerLoggedIn) return;
- if(!confirm("تحذير: سيتم مسح التعديلات واستعادة القواميس الأصلية؟")) return;
+ if(!confirm("استعادة الافتراضي؟")) return;
  dictionaries = JSON.parse(JSON.stringify(defaultDictionaries));
  saveDictionaries();
  renderAll();
  renderManageList();
  playCyberSound('success');
- showToast("تمت استعادة إعدادات المصنع الافتراضية");
+ showToast("تمت الاستعادة بنجاح");
 }
 
 function copyText(id){
  const el = document.getElementById(id);
  const text = el.value || el.innerText;
- if(navigator.clipboard&&navigator.clipboard.writeText){
-  navigator.clipboard.writeText(text).then(()=>{
-   playCyberSound('click');
-   showToast("تم النسخ إلى الذاكرة المؤقتة ✓");
-  });
- }else{
-  showToast("تعذر النسخ");
- }
+ navigator.clipboard.writeText(text).then(()=>{
+  playCyberSound('click');
+  showToast("تم النسخ ✓");
+ });
 }
 
 async function translateText(){
@@ -1053,56 +1155,33 @@ async function translateText(){
  const from=document.getElementById("fromLang").value;
  const to=document.getElementById("toLang").value;
  const out=document.getElementById("translationResult");
- const btn=document.getElementById("translateBtn");
-
- if(!text){
-  playCyberSound('error');
-  showToast("الرجاء كتابة نص للترجمة أولاً");
-  return;
- }
- if(from===to){out.textContent=text;return}
-
- btn.disabled=true;
- out.textContent="⏳ جاري تحليل وإرسال الترجمة عبر الشبكة العصبية...";
-
+ if(!text) return;
  try{
-  const url="https://api.mymemory.translated.net/get?q="+encodeURIComponent(text)+"&langpair="+from+"|"+to;
-  const response=await fetch(url);
-  if(!response.ok)throw new Error("Network error");
-  const data=await response.json();
-  out.textContent=data.responseData?.translatedText||"فشلت الترجمة";
+  const res=await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}`);
+  const data=await res.json();
+  out.textContent=data.responseData?.translatedText||"خطأ";
   playCyberSound('success');
  }catch(e){
-  playCyberSound('error');
-  out.textContent="فشل الاتصال بالخادم العصبي. تحقق من الشبكة.";
- }finally{
-  btn.disabled=false;
+  out.textContent="خطأ بالاتصال";
  }
 }
 
 const questions=[
  {q:"ما معنى كلمة (أغاي) في الذاكرة؟",a:["أنا","أنت","نحن"],correct:"أنا"},
  {q:"ما معنى كلمة (نين) في الذاكرة؟",a:["هم","أنت أو أنتِ","أنا"],correct:"أنت أو أنتِ"},
- {q:"ما معنى كلمة (أري) في الذاكرة؟",a:["نحن","أنت","هم"],correct:"نحن"},
- {q:"ما معنى كلمة (إِنْڨِي) في الذاكرة؟",a:["أنا","هم أو هن","أنت"],correct:"هم أو هن"},
- {q:"ما معنى كلمة (اندي) في الذاكرة؟",a:["نحن","أنتم أو أنتن","أنا"],correct:"أنتم أو أنتن"}
+ {q:"ما معنى كلمة (أري) في الذاكرة؟",a:["نحن","أنت","هم"],correct:"نحن"}
 ];
-
-let current=0;
-let score=0;
-let answered=false;
+let current=0, score=0, answered=false;
 
 function renderQuestion(){
  const q=questions[current];
  document.getElementById("question").textContent=q.q;
  document.getElementById("quizResult").textContent="";
- document.getElementById("quizProgress").textContent=`اختبار السؤال ${current+1} من ${questions.length}`;
+ document.getElementById("quizProgress").textContent=`السؤال ${current+1} من ${questions.length}`;
  document.getElementById("nextQuestionBtn").disabled=true;
  answered=false;
-
  const box=document.getElementById("answers");
  box.innerHTML="";
-
  q.a.forEach(answer=>{
   const btn=document.createElement("button");
   btn.textContent=answer;
@@ -1117,57 +1196,37 @@ function renderQuestion(){
 function checkAnswer(answer,button){
  if(answered)return;
  answered=true;
-
  const correct=questions[current].correct;
  const out=document.getElementById("quizResult");
-
  if(answer===correct){
   playCyberSound('success');
-  out.textContent="إجابة صحيحة متطابقة! 👏";
-  out.style.color="var(--green)";
+  out.textContent="إجابة صحيحة! 👏";
   score++;
   button.style.background="linear-gradient(135deg, #16a34a, #15803d)";
-  showToast("أحسنت! تم رفع مستوى الكفاءة");
  }else{
   playCyberSound('error');
-  out.textContent=`إجابة غير مطابقة. الصحيحة: ${correct}`;
-  out.style.color="var(--pink)";
+  out.textContent=`خطأ. الصحيحة: ${correct}`;
   button.style.background="linear-gradient(135deg, #dc2626, #991b1b)";
-  showToast("خطأ في مطابقة الإجابة");
  }
-
  document.getElementById("score").textContent=score;
-
- document.querySelectorAll("#answers button").forEach(btn=>{
-  btn.disabled=true;
- });
-
  document.getElementById("nextQuestionBtn").disabled=false;
 }
 
 function nextQuestion(){
- if(!answered)return;
- playCyberSound('click');
  if(current<questions.length-1){
   current++;
   renderQuestion();
  }else{
-  document.getElementById("question").textContent="تم اكتمال اختبار القدرات العصبية بنجاح! 🚀";
+  document.getElementById("question").textContent="أتممت الاختبار بنجاح! 🚀";
   document.getElementById("answers").innerHTML="";
-  document.getElementById("quizResult").innerHTML=`مستوى الكفاءة النهائي: <b style="color:var(--cyan);">${score}</b> من <b style="color:var(--cyan);">${questions.length}</b>`;
   document.getElementById("nextQuestionBtn").disabled=true;
-  playCyberSound('success');
-  showToast("تهانينا، أنهيت التقييم بنجاح!");
  }
 }
 
 function restartQuiz(){
- playCyberSound('click');
- current=0;
- score=0;
+ current=0; score=0;
  document.getElementById("score").textContent=0;
  renderQuestion();
- showToast("تمت إعادة معايرة النظام للاختبار");
 }
 
 loadSaved();
@@ -1175,6 +1234,4 @@ renderAll();
 renderQuestion();
 </script>
 </body>
- <script src="./custom.js"></script>
-
 </html>
